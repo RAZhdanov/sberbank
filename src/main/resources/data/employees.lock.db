@@ -1,0 +1,6 @@
+#FileLock
+#Thu Aug 20 01:49:26 MSK 2020
+hostName=192.168.56.1
+id=17408e9aeee2669a3429e24de8e4a0dd34b75dc2f94
+method=file
+server=192.168.56.1\:3477
