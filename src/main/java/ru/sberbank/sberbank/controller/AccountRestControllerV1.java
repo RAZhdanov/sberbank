@@ -56,7 +56,9 @@ public class AccountRestControllerV1 extends GeneralRestController<AccountRestCo
         Optional<SberAccountEntity> source = tservice.findById(sourceAccountId);
         Optional<SberAccountEntity> target = tservice.findById(targetAccountId);
 
-        if(!source.isPresent() || !target.isPresent() || amount == null){
+        if(!source.isPresent() || !target.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else if(amount == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
