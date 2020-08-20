@@ -32,27 +32,28 @@ public class GeneralServiceImpl
 
     @Override
     public T_entity add(T_entity dto) {
-        return null;
+        return m_iT_repo.save(dto);
     }
 
     @Override
     public void delete(T_entity dto) {
-
+        m_iT_repo.delete(dto);
     }
 
     @Override
     public T_entity edit(T_entity dto) {
-        T_entity t_entity = m_iT_repo.save(dto);
-        return t_entity;
+        return m_iT_repo.save(dto);
     }
 
     @Override
     public Collection<T_entity> editAll(Collection<T_entity> entityCollection) {
-        return m_iT_repo.saveAll(entityCollection);
+        Collection<T_entity> entities = m_iT_repo.saveAll(entityCollection);
+
+        return entities;
     }
 
     @Override
     public long count() {
-        return 0;
+        return m_iT_repo.count();
     }
 }

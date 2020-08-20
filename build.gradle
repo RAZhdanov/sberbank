@@ -31,6 +31,9 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+	dependencies {
+		testCompile "junit:junit:4.13"
+	}
 	// https://mvnrepository.com/artifact/org.springframework.batch/spring-batch-core
 	compile group: 'org.springframework.batch', name: 'spring-batch-core', version: '4.2.4.RELEASE'
 

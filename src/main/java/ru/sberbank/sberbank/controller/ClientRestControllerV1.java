@@ -29,7 +29,7 @@ public class ClientRestControllerV1 extends GeneralRestController<ClientRestCont
         this.generalSberAccountService = generalSberAccountService;
     }
 
-    @GetMapping("/{clientId:[\\d]+}/accounts")
+    @GetMapping("/{clientId:[+]?[\\d]+}/accounts")
     @Operation(summary = "Получить все Счета Клиента")
     public ResponseEntity<CollectionModel<SberAccountEntity>> getAllByClientId(@PathVariable Integer clientId){
         SberAccountServiceImpl sberAccountService = (SberAccountServiceImpl) generalSberAccountService;
