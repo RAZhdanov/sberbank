@@ -3,7 +3,6 @@ package ru.sberbank.sberbank.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Links;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +17,6 @@ import ru.sberbank.sberbank.util.GeneralService;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
-
 @RestController
 @RequestMapping(value = "/api/v1/accounts")
 public class AccountRestControllerV1 extends GeneralRestController<AccountRestControllerV1, GeneralService<SberAccountEntity>, SberAccountEntity> {
@@ -32,13 +28,6 @@ public class AccountRestControllerV1 extends GeneralRestController<AccountRestCo
     public AccountRestControllerV1(GeneralService<SberAccountEntity> m_iTservice, GeneralService<SberRawTransactionEntity> generalRawTransactionService) {
         super(m_iTservice,AccountRestControllerV1.class);
         this.generalRawTransactionService = generalRawTransactionService;
-    }
-
-    @Override
-    protected Links createLinks(Integer id, HttpServletRequest request, SberAccountEntity optEntity, String strSelfHref) throws Exception {
-        Links links = super.createLinks(id, request, optEntity, strSelfHref);
-        links.and(new Link(linkTo(methodOn(getEntityClass()).sendMoney(null, null, null, null)).toUri().getPath(),"sendMoney"));
-        return links;
     }
 
     @PostMapping("/sendMoney/{sourceAccountId:[+]?[\\d]+}/{targetAccountId:[+]?[\\d]+}/{amount:[+]?[0-9]*\\.?[0-9]+}")
